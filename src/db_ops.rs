@@ -20,6 +20,7 @@ pub fn create_db() {
         Ok(_) => println!("Created table."),
         Err(err) => {
             eprintln!("Database creation failed: {}", err);
+            exit(1);
         }
     }
 }
@@ -53,6 +54,9 @@ pub fn clear_db() {
     let conn: Connection = Connection::open("shortly.db").unwrap();
     match conn.execute("DELETE FROM long_to_short", []) {
         Ok(updated) => println!("Records removed ({}).", updated),
-        Err(err) => println!("update failed: {}", err),
+        Err(err) => {
+            println!("Update failed: {}", err);
+            exit(1);
+        }
     };
 }
