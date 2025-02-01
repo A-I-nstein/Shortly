@@ -1,3 +1,4 @@
+use std::process::exit;
 use rusqlite::Connection;
 
 #[derive(Debug)]
@@ -27,7 +28,10 @@ pub fn insert_record(record: &ShortlyRecord) {
     let conn: Connection = Connection::open("shortly.db").unwrap();
     match conn.execute("INSERT INTO long_to_short (long_url, short_url) VALUES (?1, ?2)", [record.long_url.clone(), record.short_url_base.clone()]) {
         Ok(updated) => println!("Record inserted ({}).", updated),
-        Err(err) => println!("update failed: {}", err),
+        Err(err) => {
+            println!("Update failed: {}", err);
+            exit(1);
+        }
     };
 }
 
