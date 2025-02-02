@@ -45,7 +45,14 @@ pub fn get_url(short_url: &String) -> String {
             short_url_base: row.get(1)?,
         })
     }).unwrap();
-    return record_iter.next().unwrap().unwrap().long_url;
+    match record_iter.next() {
+        Some(record) => {
+            return record.unwrap().long_url;
+        },
+        None => {
+            return String::from("/missing");
+        }
+    }
 }
 
 pub fn show_records() {
