@@ -23,7 +23,7 @@ pub fn shorten() {
             };
             insert_record(&new_record);
             update_config(&new_record.short_url_base);
-            println!("Your unique URL base: {:?}", new_record.short_url_base);
+            println!("{}", format!("Your unique short URL: http://127.0.0.1:3000/{}", new_record.short_url_base));
         },
         Err(err) => {
             eprintln!("Error: {}", err);
