@@ -7,7 +7,7 @@ use serde::{Deserialize, Serialize};
 use std::{fs::read_to_string, process::exit};
 use serde_json::{from_str, to_string_pretty};
 
-use crate::word_processing::load_words;
+use crate::word_processing::{load_words, save_words};
 use crate::db_ops::{insert_record, ShortlyRecord};
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -94,7 +94,6 @@ fn update_config(short_url: &String, custom:bool) {
 
 fn get_custom_url() -> String {
 
-    
     println!("\n1. Choose from a predefined list: press '1'");
     println!("2. Provide your own (8 letters): press '2'");
     println!("\nHow would you like to customise your URL?");
@@ -124,7 +123,7 @@ fn get_custom_url() -> String {
 fn get_random_word() -> String {
 
     let mut rng = rand::rng();
-    let eight_letter_words: Vec<String> = load_words();
+    let mut eight_letter_words: Vec<String> = load_words();
 
     loop {
         let random_word: String = eight_letter_words.choose(&mut rng).unwrap().to_string();
@@ -137,6 +136,8 @@ fn get_random_word() -> String {
         let _n: usize = stdin.read_line(&mut user_input).unwrap();
         let trimmed_input: &str = user_input.trim();
         if trimmed_input.is_empty() == false {
+            eight_letter_words.remove(eight_letter_words.iter().position(|x| *x == random_word).expect("Element not found."));
+            save_words(eight_letter_words);
             return random_word;
         }
     }

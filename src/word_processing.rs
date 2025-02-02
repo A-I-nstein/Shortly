@@ -7,7 +7,7 @@ use serde_json::{from_str, to_string_pretty};
 #[derive(Serialize, Deserialize)]
 struct CandidateWords {
     eight_letter_words: Vec<String>,
-    four_letter_words: Vec<String>
+    // four_letter_words: Vec<String>
 }
 
 pub fn clean_words() {
@@ -36,7 +36,7 @@ pub fn clean_words() {
     // println!("{:?} {:?}", eight_letter_words, eight_letter_words.len());
 
     let candidate_words: CandidateWords = CandidateWords {
-        four_letter_words,
+        // four_letter_words,
         eight_letter_words
     };
 
@@ -50,4 +50,13 @@ pub fn load_words () -> Vec<String> {
     let json_data: String = read_to_string("custom_urls.json").unwrap();
     let candidate_words: CandidateWords = from_str(&json_data).unwrap();
     return candidate_words.eight_letter_words;
+}
+
+pub fn save_words (eight_letter_words: Vec<String>) {
+    let candidate_words: CandidateWords = CandidateWords {
+        eight_letter_words
+    };
+    let json_data: String = to_string_pretty(&candidate_words).unwrap();
+    let mut file: File = File::create("custom_urls.json").unwrap();
+    file.write_all(json_data.as_bytes()).unwrap();
 }
