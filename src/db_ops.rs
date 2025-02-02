@@ -36,6 +36,18 @@ pub fn insert_record(record: &ShortlyRecord) {
     };
 }
 
+pub fn get_url(short_url: &String) -> String {
+    let conn: Connection = Connection::open("shortly.db").unwrap();
+    let mut stmt = conn.prepare("SELECT long_url, short_url FROM long_to_short WHERE short_url = ?1").unwrap();
+    let mut record_iter = stmt.query_map([short_url], |row| {
+        Ok(ShortlyRecord {
+            long_url: row.get(0)?,
+            short_url_base: row.get(1)?,
+        })
+    }).unwrap();
+    return record_iter.next().unwrap().unwrap().long_url;
+}
+
 pub fn show_records() {
     let conn: Connection = Connection::open("shortly.db").unwrap();
     let mut stmt = conn.prepare("SELECT long_url, short_url FROM long_to_short").unwrap();
