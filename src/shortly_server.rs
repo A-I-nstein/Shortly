@@ -36,7 +36,7 @@ async fn send_to(Path(base): Path<String>) -> impl IntoResponse {
     if long_url.is_empty() {
         return Err((
             StatusCode::NOT_FOUND,
-            Json(json!({"error": "Short URL not found."})),
+            Json(json!({"error": "Invalid URL. Verify the short URL base."})),
         ));
     }
 

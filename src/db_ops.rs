@@ -68,7 +68,7 @@ pub fn get_record(short_url: &String) -> String {
             return record.unwrap().long_url;
         }
         None => {
-            return String::from("/missing");
+            return "".to_string();
         }
     }
 }
