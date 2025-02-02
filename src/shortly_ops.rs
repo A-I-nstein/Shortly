@@ -24,7 +24,7 @@ pub fn shorten(custom:bool) {
                 long_url: in_url.to_string()
             };
             insert_record(&new_record);
-            update_config(&new_record.short_url_base);
+            update_config(&new_record.short_url_base, custom);
             println!("{}", format!("Your unique short URL: http://127.0.0.1:3000/{}", new_record.short_url_base));
         },
         Err(err) => {
@@ -80,7 +80,10 @@ fn increment_string(s: &str) -> String {
     "a".to_string() + &result
 }
 
-fn update_config(short_url: &String) {
+fn update_config(short_url: &String, custom:bool) {
+    if custom {
+        return;
+    }
     let config: Config = Config {
         last_base: short_url.to_string(),
     };
@@ -125,7 +128,7 @@ fn get_random_word() -> String {
 
     loop {
         let random_word: String = eight_letter_words.choose(&mut rng).unwrap().to_string();
-        println!("Custom URL Base: {:?}", random_word);
+        println!("\nCustom URL Base: {:?}", random_word);
         println!("Press 'y' to select this URL base.");
         println!("Click 'Enter' to choose a different base.");
 
