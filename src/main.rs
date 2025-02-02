@@ -3,6 +3,7 @@ use std::{io::{stdin, Stdin}, num::ParseIntError, process::exit};
 mod db_ops;
 mod shortly_ops;
 mod shortly_server;
+mod word_processing;
 
 use shortly_ops::shorten;
 use shortly_server::start_server;
@@ -13,15 +14,20 @@ fn main() {
     match choice {
         Ok(in_choice) => {
             if in_choice == 1 {
-                shorten();
+                shorten(false);
             } else if in_choice == 2 {
-                show_records();
+                shorten(true);
             } else if in_choice == 3 {
-                create_db();
+                show_records();
             } else if in_choice == 4 {
-                clear_db();
+                create_db();
             } else if in_choice == 5 {
+                clear_db();
+            } else if in_choice == 6 {
                 start_server();
+            } else {
+                eprintln!("Invalid choice. Please try again.");
+                exit(1)
             }
         },
         Err(err) => {
@@ -35,11 +41,12 @@ fn get_user_input() -> Result<i64, String> {
 
     let mut user_input: String = String::new();
 
-    println!("1. Shorten a URL: press '1'");
-    println!("2. Show all records: press '2'");
-    println!("3. Create the Database: press '3'");
-    println!("4. Clear the Database: press '4'");
-    println!("5. Start the Server: press '5'");
+    println!("\n1. Shorten URL: press '1'");
+    println!("2. Create custom URL: press '2'");
+    println!("3. Show all records: press '3'");
+    println!("4. Create Database: press '4'");
+    println!("5. Clear Database: press '5'");
+    println!("6. Start Server: press '6'");
     println!("\nWelcome to Shortly. What would you like to do? ");
 
     let stdin: Stdin = stdin();
