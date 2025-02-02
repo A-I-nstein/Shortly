@@ -1,32 +1,38 @@
+use rand::seq::IndexedRandom;
+use serde::{Deserialize, Serialize};
+use serde_json::{from_str, to_string_pretty};
 use std::fs::File;
 use std::io::Write;
-use rand::seq::IndexedRandom;
-use url::{Url, ParseError};
-use std::io::{Stdin, stdin};
-use serde::{Deserialize, Serialize};
+use std::io::{stdin, Stdin};
 use std::{fs::read_to_string, process::exit};
-use serde_json::{from_str, to_string_pretty};
+use url::{ParseError, Url};
 
-use crate::word_processing::{load_words, save_words};
 use crate::db_ops::{insert_record, ShortlyRecord};
+use crate::word_processing::{load_words, save_words};
 
 #[derive(Serialize, Deserialize, Debug)]
 struct Config {
-    last_base: String
+    last_base: String,
 }
 
-pub fn shorten(custom:bool) {
+pub fn shorten(custom: bool) {
     let long_url: Result<Url, String> = get_user_url();
     match long_url {
         Ok(in_url) => {
             let new_record: ShortlyRecord = ShortlyRecord {
                 short_url_base: get_new_base(custom),
-                long_url: in_url.to_string()
+                long_url: in_url.to_string(),
             };
             insert_record(&new_record);
             update_config(&new_record.short_url_base, custom);
-            println!("{}", format!("Your unique short URL: http://127.0.0.1:3000/{}", new_record.short_url_base));
-        },
+            println!(
+                "{}",
+                format!(
+                    "Your unique short URL: http://127.0.0.1:3000/{}",
+                    new_record.short_url_base
+                )
+            );
+        }
         Err(err) => {
             eprintln!("Error: {}", err);
             exit(1);
@@ -39,17 +45,20 @@ fn get_user_url() -> Result<Url, String> {
 
     println!("\nEnter the URL that you want to shorten: ");
     let stdin: Stdin = stdin();
-    let _n: usize = stdin.read_line(&mut user_input).map_err(|e| e.to_string())?;
+    let _n: usize = stdin
+        .read_line(&mut user_input)
+        .map_err(|e| e.to_string())?;
 
     let trimmed_input: &str = user_input.trim();
     if trimmed_input.is_empty() {
         return Err("No URL entered. Please try again.".to_string());
     }
-    let long_url: Result<Url, String> = Url::parse(trimmed_input).map_err(|e: ParseError| format!("Invalid URL: {}", e));
+    let long_url: Result<Url, String> =
+        Url::parse(trimmed_input).map_err(|e: ParseError| format!("Invalid URL: {}", e));
     return long_url;
 }
 
-fn get_new_base(custom:bool) -> String {
+fn get_new_base(custom: bool) -> String {
     if custom {
         return get_custom_url();
     } else {
@@ -80,7 +89,7 @@ fn increment_string(s: &str) -> String {
     "a".to_string() + &result
 }
 
-fn update_config(short_url: &String, custom:bool) {
+fn update_config(short_url: &String, custom: bool) {
     if custom {
         return;
     }
@@ -93,7 +102,6 @@ fn update_config(short_url: &String, custom:bool) {
 }
 
 fn get_custom_url() -> String {
-
     println!("\n1. Choose from a predefined list: press '1'");
     println!("2. Provide your own (8 letters): press '2'");
     println!("\nHow would you like to customise your URL?");
@@ -121,7 +129,6 @@ fn get_custom_url() -> String {
 }
 
 fn get_random_word() -> String {
-
     let mut rng = rand::rng();
     let mut eight_letter_words: Vec<String> = load_words();
 
@@ -136,14 +143,19 @@ fn get_random_word() -> String {
         let _n: usize = stdin.read_line(&mut user_input).unwrap();
         let trimmed_input: &str = user_input.trim();
         if trimmed_input.is_empty() == false {
-            eight_letter_words.remove(eight_letter_words.iter().position(|x| *x == random_word).expect("Element not found."));
+            eight_letter_words.remove(
+                eight_letter_words
+                    .iter()
+                    .position(|x| *x == random_word)
+                    .expect("Element not found."),
+            );
             save_words(eight_letter_words);
             return random_word;
         }
     }
 }
 
-fn get_custom_base () -> String {
+fn get_custom_base() -> String {
     loop {
         println!("\nProvide your custom URL base: ");
         let mut user_input: String = String::new();

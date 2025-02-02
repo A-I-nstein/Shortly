@@ -1,19 +1,18 @@
+use axum::{response::Redirect, routing::get, Router};
 use std::net::SocketAddr;
-use axum::{routing::get, Router, response::Redirect};
 
 use crate::db_ops::get_url;
 
 #[tokio::main]
 pub async fn start_server() {
-
     let app: Router = Router::new()
         .route("/", get(root))
         .route("/:base", get(send_to))
         .route("/missing", get(missing));
-    
+
     let addr: SocketAddr = SocketAddr::from(([127, 0, 0, 1], 3000));
     println!("Server running at http://{}", addr);
-    
+
     axum::Server::bind(&addr)
         .serve(app.into_make_service())
         .await
