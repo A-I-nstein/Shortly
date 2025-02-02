@@ -6,6 +6,7 @@ mod shortly_server;
 mod word_processing;
 
 use shortly_ops::shorten;
+use word_processing::clean_words;
 use shortly_server::start_server;
 use db_ops::{create_db, show_records, clear_db};
 
@@ -24,6 +25,8 @@ fn main() {
             } else if in_choice == 5 {
                 clear_db();
             } else if in_choice == 6 {
+                clean_words();
+            } else if in_choice == 7 {
                 start_server();
             } else {
                 eprintln!("Invalid choice. Please try again.");
@@ -46,7 +49,8 @@ fn get_user_input() -> Result<i64, String> {
     println!("3. Show all records: press '3'");
     println!("4. Create Database: press '4'");
     println!("5. Clear Database: press '5'");
-    println!("6. Start Server: press '6'");
+    println!("6. Create custom URL list: press '6'");
+    println!("7. Start Server: press '7'");
     println!("\nWelcome to Shortly. What would you like to do? ");
 
     let stdin: Stdin = stdin();
