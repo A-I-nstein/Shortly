@@ -7,8 +7,19 @@ pub struct ShortlyRecord {
     pub long_url: String,
 }
 
+fn get_conn() -> Connection {
+    let connection: Result<Connection, rusqlite::Error> = Connection::open("shortly.db");
+    match connection {
+        Ok(conn) => return conn,
+        Err(err) => {
+            eprintln!("\nDatabase connection failed: {}", err);
+            exit(1);
+        }
+    }
+}
+
 pub fn create_db() {
-    let conn: Connection = Connection::open("shortly.db").unwrap();
+    let conn: Connection = get_conn();
     let result: Result<usize, rusqlite::Error> = conn.execute(
         "CREATE TABLE long_to_short (
             long_url TEXT NOT NULL,
@@ -17,30 +28,30 @@ pub fn create_db() {
         [],
     );
     match result {
-        Ok(_) => println!("Created table."),
+        Ok(_) => println!("\nDatabase and Table created."),
         Err(err) => {
-            eprintln!("Database creation failed: {}", err);
+            eprintln!("\nDatabase creation failed: {}", err);
             exit(1);
         }
     }
 }
 
 pub fn insert_record(record: &ShortlyRecord) {
-    let conn: Connection = Connection::open("shortly.db").unwrap();
+    let conn: Connection = get_conn();
     match conn.execute(
         "INSERT INTO long_to_short (long_url, short_url) VALUES (?1, ?2)",
         [record.long_url.clone(), record.short_url_base.clone()],
     ) {
-        Ok(updated) => println!("\nRecord inserted ({}).", updated),
+        Ok(_) => println!("\nRecord inserted."),
         Err(err) => {
-            println!("Update failed: {}", err);
+            println!("\nUpdate failed: {}", err);
             exit(1);
         }
     };
 }
 
-pub fn get_url(short_url: &String) -> String {
-    let conn: Connection = Connection::open("shortly.db").unwrap();
+pub fn get_record(short_url: &String) -> String {
+    let conn: Connection = get_conn();
     let mut stmt = conn
         .prepare("SELECT long_url, short_url FROM long_to_short WHERE short_url = ?1")
         .unwrap();
@@ -63,7 +74,7 @@ pub fn get_url(short_url: &String) -> String {
 }
 
 pub fn show_records() {
-    let conn: Connection = Connection::open("shortly.db").unwrap();
+    let conn: Connection = get_conn();
     let mut stmt = conn
         .prepare("SELECT long_url, short_url FROM long_to_short")
         .unwrap();
@@ -75,17 +86,18 @@ pub fn show_records() {
             })
         })
         .unwrap();
+    println!();
     for record in record_iter {
         println!("{:?}", record.unwrap());
     }
 }
 
 pub fn clear_db() {
-    let conn: Connection = Connection::open("shortly.db").unwrap();
+    let conn: Connection = get_conn();
     match conn.execute("DELETE FROM long_to_short", []) {
-        Ok(updated) => println!("Records removed ({}).", updated),
+        Ok(updated) => println!("\nRecords removed ({}).", updated),
         Err(err) => {
-            println!("Update failed: {}", err);
+            println!("\nUpdate failed: {}", err);
             exit(1);
         }
     };

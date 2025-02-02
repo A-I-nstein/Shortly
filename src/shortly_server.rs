@@ -1,33 +1,44 @@
-use axum::{response::Redirect, routing::get, Router};
+use axum::{
+    extract::Path,
+    http::StatusCode,
+    response::{IntoResponse, Redirect},
+    routing::get,
+    Json, Router,
+};
+use serde_json::json;
 use std::net::SocketAddr;
 
-use crate::db_ops::get_url;
+use crate::db_ops::get_record;
 
 #[tokio::main]
-pub async fn start_server() {
-    let app: Router = Router::new()
+pub async fn start_server() -> Result<(), Box<dyn std::error::Error>> {
+    let app = Router::new()
         .route("/", get(root))
-        .route("/:base", get(send_to))
-        .route("/missing", get(missing));
+        .route("/:base", get(send_to));
 
-    let addr: SocketAddr = SocketAddr::from(([127, 0, 0, 1], 3000));
-    println!("Server running at http://{}", addr);
+    let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
+    println!("\nServer running at http://{}", addr);
 
     axum::Server::bind(&addr)
         .serve(app.into_make_service())
-        .await
-        .unwrap();
+        .await?;
+
+    Ok(())
 }
 
 async fn root() -> &'static str {
     "Welcome to the Shortly Web Server!\nTo navigate to your url, simply add '/your_short_url' to the address bar"
 }
 
-async fn missing() -> &'static str {
-    "Invalid short base: Please verify your unique base."
-}
+async fn send_to(Path(base): Path<String>) -> impl IntoResponse {
+    let long_url = get_record(&base);
 
-async fn send_to(axum::extract::Path(base): axum::extract::Path<String>) -> Redirect {
-    let long_url: String = get_url(&base);
-    Redirect::to(&long_url)
+    if long_url.is_empty() {
+        return Err((
+            StatusCode::NOT_FOUND,
+            Json(json!({"error": "Short URL not found."})),
+        ));
+    }
+
+    Ok(Redirect::to(&long_url))
 }

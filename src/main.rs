@@ -1,8 +1,4 @@
-use std::{
-    io::{stdin, Stdin},
-    num::ParseIntError,
-    process::exit,
-};
+use std::{io::stdin, process::exit, str::FromStr};
 
 mod db_ops;
 mod shortly_ops;
@@ -14,59 +10,79 @@ use shortly_ops::shorten;
 use shortly_server::start_server;
 use word_processing::clean_words;
 
-fn main() {
-    let choice: Result<i64, String> = get_user_input();
-    match choice {
-        Ok(in_choice) => {
-            if in_choice == 1 {
-                shorten(false);
-            } else if in_choice == 2 {
-                shorten(true);
-            } else if in_choice == 3 {
-                show_records();
-            } else if in_choice == 4 {
-                create_db();
-            } else if in_choice == 5 {
-                clear_db();
-            } else if in_choice == 6 {
-                clean_words();
-            } else if in_choice == 7 {
-                start_server();
-            } else {
-                eprintln!("Invalid choice. Please try again.");
-                exit(1)
-            }
-        }
-        Err(err) => {
-            eprintln!("Error: {}", err);
-            exit(1);
+#[derive(Debug, PartialEq)]
+enum Choice {
+    Shorten,
+    CustomShorten,
+    ShowRecords,
+    CreateDb,
+    ClearDb,
+    CustomWordList,
+    StartServer,
+    Invalid,
+}
+
+impl FromStr for Choice {
+    type Err = ();
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        match s {
+            "1" => Ok(Choice::Shorten),
+            "2" => Ok(Choice::CustomShorten),
+            "3" => Ok(Choice::ShowRecords),
+            "4" => Ok(Choice::CreateDb),
+            "5" => Ok(Choice::ClearDb),
+            "6" => Ok(Choice::CustomWordList),
+            "7" => Ok(Choice::StartServer),
+            _ => Ok(Choice::Invalid),
         }
     }
 }
 
-fn get_user_input() -> Result<i64, String> {
-    let mut user_input: String = String::new();
+fn main() {
+    loop {
+        match get_user_input() {
+            Ok(choice) => match choice {
+                Choice::Shorten => shorten(false),
+                Choice::CustomShorten => shorten(true),
+                Choice::ShowRecords => show_records(),
+                Choice::CreateDb => create_db(),
+                Choice::ClearDb => clear_db(),
+                Choice::CustomWordList => clean_words().unwrap(),
+                Choice::StartServer => start_server().unwrap(),
+                Choice::Invalid => {
+                    eprint!("{esc}[2J{esc}[1;1H", esc = 27 as char);
+                    eprintln!("\nInvalid choice. Please try again.");
+                    continue;
+                }
+            },
+            Err(err) => {
+                eprintln!("Error: {}", err);
+                exit(1);
+            }
+        }
+        break;
+    }
+}
 
-    println!("\n1. Shorten URL: press '1'");
-    println!("2. Create custom URL: press '2'");
-    println!("3. Show all records: press '3'");
-    println!("4. Create Database: press '4'");
-    println!("5. Clear Database: press '5'");
-    println!("6. Create custom URL list: press '6'");
-    println!("7. Start Server: press '7'");
-    println!("\nWelcome to Shortly. What would you like to do? ");
+fn get_user_input() -> Result<Choice, String> {
+    let mut user_input = String::new();
 
-    let stdin: Stdin = stdin();
-    let _n: usize = stdin
+    println!("\n1. Create short URL");
+    println!("2. Create custom short URL");
+    println!("\nWelcome to Shortly. What would you like to do?");
+
+    let stdin = stdin();
+    stdin
         .read_line(&mut user_input)
         .map_err(|e| e.to_string())?;
 
-    let trimmed_input: &str = user_input.trim();
+    let trimmed_input = user_input.trim();
     if trimmed_input.is_empty() {
         return Err("No choice has been made. Please try again.".to_string());
     }
-    let choice: Result<i64, String> = trimmed_input
-        .parse::<i64>()
-        .map_err(|e: ParseIntError| format!("Invalid Input: {}", e));
-    return choice;
+
+    trimmed_input
+        .parse::<Choice>()
+        .map_err(|_| "Invalid input. Please enter a number.".to_string())
 }
