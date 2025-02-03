@@ -7,7 +7,10 @@ Contains the submission made by [A-I-nstein](https://github.com/A-I-nstein) for 
 * Built Using: Rust, Axum and Rusqlite
 
 Click the image below to watch the demo:
+
 [![Watch the video](https://img.youtube.com/vi/XeG-5DCsW6Q/hqdefault.jpg)](https://youtu.be/XeG-5DCsW6Q)
+
+User Story Walkthrough:
 
 ![User Story](demo/shortly.jpg)
 
