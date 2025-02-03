@@ -6,6 +6,8 @@ Contains the submission made by [A-I-nstein](https://github.com/A-I-nstein) for 
 * Special feature: Custom URL aliases
 * Built Using: Rust, Axum and Rusqlite
 
+[![Watch the video](https://img.youtube.com/vi/XeG-5DCsW6Q/hqdefault.jpg)](https://youtu.be/XeG-5DCsW6Q)
+
 ![User Story](demo/shortly.jpg)
 
 Credits: [words_alpha.txt](https://github.com/dwyl/english-words) 
