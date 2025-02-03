@@ -1,0 +1,163 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:134.0) Gecko/20100101 Firefox/134.0" version="26.0.10">
+  <diagram name="Page-1" id="Xk-DX4AXokCh7NoZQd18">
+    <mxGraphModel dx="1050" dy="1658" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="FVBBxtPA_8pxf56IBytE-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="FVBBxtPA_8pxf56IBytE-1" target="FVBBxtPA_8pxf56IBytE-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FVBBxtPA_8pxf56IBytE-1" value="&lt;div align=&quot;center&quot;&gt;Create default short URL&lt;/div&gt;&lt;div align=&quot;center&quot;&gt;OR &lt;br&gt;&lt;/div&gt;&lt;div align=&quot;center&quot;&gt;Create custom short URL&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="30" y="50" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FVBBxtPA_8pxf56IBytE-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="FVBBxtPA_8pxf56IBytE-3" target="FVBBxtPA_8pxf56IBytE-5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="420" y="30" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="280" y="20" />
+              <mxPoint x="421" y="20" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FVBBxtPA_8pxf56IBytE-9" value="DEFAULT" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="FVBBxtPA_8pxf56IBytE-8">
+          <mxGeometry x="0.2727" y="2" relative="1" as="geometry">
+            <mxPoint x="-31" y="2" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FVBBxtPA_8pxf56IBytE-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="FVBBxtPA_8pxf56IBytE-3" target="FVBBxtPA_8pxf56IBytE-5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="150" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="280" y="140" />
+              <mxPoint x="420" y="140" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FVBBxtPA_8pxf56IBytE-11" value="CUSTOM" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="FVBBxtPA_8pxf56IBytE-10">
+          <mxGeometry x="0.2909" relative="1" as="geometry">
+            <mxPoint x="-33" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FVBBxtPA_8pxf56IBytE-3" value="&lt;div&gt;User&lt;/div&gt;&lt;div&gt;choice&lt;br&gt;&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="40" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="FVBBxtPA_8pxf56IBytE-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="FVBBxtPA_8pxf56IBytE-5" target="FVBBxtPA_8pxf56IBytE-23">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="520" y="240" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="520" y="80" />
+              <mxPoint x="520" y="190" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FVBBxtPA_8pxf56IBytE-25" value="CUSTOM" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="FVBBxtPA_8pxf56IBytE-24">
+          <mxGeometry x="-0.0364" relative="1" as="geometry">
+            <mxPoint y="8" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FVBBxtPA_8pxf56IBytE-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="460" y="80" as="sourcePoint" />
+            <mxPoint x="715" y="460" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="520" y="80" />
+              <mxPoint x="520" y="-40" />
+              <mxPoint x="880" y="-40" />
+              <mxPoint x="880" y="460" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FVBBxtPA_8pxf56IBytE-38" value="DEFAULT" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="FVBBxtPA_8pxf56IBytE-37">
+          <mxGeometry x="-0.8207" y="1" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FVBBxtPA_8pxf56IBytE-40" value="DEFAULT" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="FVBBxtPA_8pxf56IBytE-37">
+          <mxGeometry x="0.4822" relative="1" as="geometry">
+            <mxPoint y="-3" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FVBBxtPA_8pxf56IBytE-5" value="Get long URL from user" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="50" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FVBBxtPA_8pxf56IBytE-43" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="FVBBxtPA_8pxf56IBytE-14" target="FVBBxtPA_8pxf56IBytE-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FVBBxtPA_8pxf56IBytE-14" value="Extract the next available short URL base (starts from aaaaaaaa)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="595" y="430" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FVBBxtPA_8pxf56IBytE-47" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="FVBBxtPA_8pxf56IBytE-17" target="FVBBxtPA_8pxf56IBytE-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FVBBxtPA_8pxf56IBytE-17" value="Insert short URL base and long URL into Database" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="310" y="340" width="130" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FVBBxtPA_8pxf56IBytE-20" value="Return complete short URL to user" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="130" y="340" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FVBBxtPA_8pxf56IBytE-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="FVBBxtPA_8pxf56IBytE-23" target="FVBBxtPA_8pxf56IBytE-27">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FVBBxtPA_8pxf56IBytE-39" value="CUSTOM" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="FVBBxtPA_8pxf56IBytE-28">
+          <mxGeometry x="-0.25" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FVBBxtPA_8pxf56IBytE-23" value="&lt;div&gt;Select from a list of random words&lt;/div&gt;&lt;div&gt;OR&lt;/div&gt;&lt;div&gt;Use user provided custom URL base&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="160" width="210" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FVBBxtPA_8pxf56IBytE-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="FVBBxtPA_8pxf56IBytE-27" target="FVBBxtPA_8pxf56IBytE-29">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="665" y="20" />
+              <mxPoint x="840" y="20" />
+              <mxPoint x="840" y="370" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FVBBxtPA_8pxf56IBytE-33" value="CUSTOM 2" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="FVBBxtPA_8pxf56IBytE-31">
+          <mxGeometry x="-0.1719" y="1" relative="1" as="geometry">
+            <mxPoint x="-1" y="136" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FVBBxtPA_8pxf56IBytE-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="FVBBxtPA_8pxf56IBytE-27" target="FVBBxtPA_8pxf56IBytE-30">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="800" y="80" />
+              <mxPoint x="800" y="280" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FVBBxtPA_8pxf56IBytE-35" value="CUSTOM 1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="FVBBxtPA_8pxf56IBytE-32">
+          <mxGeometry x="-0.1333" y="1" relative="1" as="geometry">
+            <mxPoint y="9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FVBBxtPA_8pxf56IBytE-27" value="&lt;div&gt;User&lt;/div&gt;&lt;div&gt;choice&lt;br&gt;&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="625" y="40" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="FVBBxtPA_8pxf56IBytE-42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="FVBBxtPA_8pxf56IBytE-29" target="FVBBxtPA_8pxf56IBytE-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FVBBxtPA_8pxf56IBytE-29" value="Get an 8 lettered base from the user" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="595" y="340" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FVBBxtPA_8pxf56IBytE-41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="FVBBxtPA_8pxf56IBytE-30" target="FVBBxtPA_8pxf56IBytE-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FVBBxtPA_8pxf56IBytE-30" value="Let user select a random word from the predefined list as the base" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="595" y="250" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FVBBxtPA_8pxf56IBytE-44" value="CUSTOM 1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="510" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="FVBBxtPA_8pxf56IBytE-45" value="CUSTOM 2" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="510" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="FVBBxtPA_8pxf56IBytE-46" value="DEFAULT" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="510" y="460" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
