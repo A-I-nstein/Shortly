@@ -17,6 +17,7 @@ pub async fn start_server() -> Result<(), Box<dyn std::error::Error>> {
         .route("/:base", get(send_to));
 
     let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
+    print!("{esc}[2J{esc}[1;1H", esc = 27 as char);
     println!("\nServer running at http://{}", addr);
 
     axum::Server::bind(&addr)
